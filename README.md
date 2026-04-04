@@ -1,23 +1,30 @@
-# AI QA Automation Framework
+# 🤖 AI QA Automation Framework
 
-AI-driven test automation framework that generates test cases using LLMs and converts them into executable automation scripts.
+An AI-driven test automation framework that generates enterprise-level test cases from requirements using LLMs.
+
+---
 
 ## 🚀 Features
-- AI-based test case generation
-- JSON structured output
-- Ready for Playwright integration
-- Scalable agent-based design
 
-## 🛠️ Tech Stack
-- Node.js
-- OpenAI API
-- Playwright (planned)
+- 📄 Supports multiple input sources
+  - Text file
+  - Word document (.docx)
+- 🧠 AI-powered module analysis
+- 🧪 Automatic test case generation
+- 🏷️ Tag-based filtering (smoke, regression, priority)
+- 📊 Summary reporting
+- ⚡ Scalable agent-based architecture
 
-## 📁 Structure
-- agents/ → AI agents
-- config/ → OpenAI config
-- testCases.json → Generated test cases
+---
 
-## ▶️ Run
+## 🏗️ Architecture
+
+input → analyzer → moduleData.json  
+→ test generator → testCases.json  
+
+---
+
+## 📦 Installation
+
 ```bash
-node index.js
+npm install
