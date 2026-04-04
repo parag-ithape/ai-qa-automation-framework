@@ -1,33 +1,26 @@
 import fs from "fs";
-import { generateTestCases } from "./agents/testGenerator.js";
-
-// 🔥 Validation function (enterprise touch)
-function validateTestCases(testCases) {
-  return testCases.filter(tc =>
-    tc.testId &&
-    tc.steps &&
-    tc.expectedResult
-  );
-}
+import { analyzeModules } from "./agents/moduleAnalyzer.js";
 
 async function run() {
-  // 🔥 Use requirement instead of URL
-  const input = "Login functionality for SauceDemo application";
+  try {
+    // 🔥 Step 1: Read input
+    const input = fs.readFileSync("input.txt", "utf-8");
+    console.log("📄 Input loaded...");
 
-  const testCases = await generateTestCases(input);
+    // 🔥 Step 2: Analyze modules
+    const moduleData = await analyzeModules(input);
 
-  console.log(`\nGenerated ${testCases.length} test cases\n`);
+    // 🔥 Step 3: Save analyzer output
+    fs.writeFileSync(
+      "moduleData.json",
+      JSON.stringify(moduleData, null, 2)
+    );
 
-  // 🔥 Validate
-  const validCases = validateTestCases(testCases);
+    console.log("✅ Module analysis saved to moduleData.json");
 
-  // 🔥 Save to file
-  fs.writeFileSync(
-    "testCases.json",
-    JSON.stringify(validCases, null, 2)
-  );
-
-  console.log("✅ Enterprise test cases saved to testCases.json");
+  } catch (error) {
+    console.error("❌ Error:", error.message);
+  }
 }
 
 run();
