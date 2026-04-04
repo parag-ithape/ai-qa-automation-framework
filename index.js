@@ -1,22 +1,33 @@
 import fs from "fs";
 import { generateTestCases } from "./agents/testGenerator.js";
 
+// 🔥 Validation function (enterprise touch)
+function validateTestCases(testCases) {
+  return testCases.filter(tc =>
+    tc.testId &&
+    tc.steps &&
+    tc.expectedResult
+  );
+}
+
 async function run() {
-  const url = "https://example.com";
+  // 🔥 Use requirement instead of URL
+  const input = "Login functionality for SauceDemo application";
 
-  const testCases = await generateTestCases(url);
+  const testCases = await generateTestCases(input);
 
-  // ✅ Print in console
-  console.log("\n✅ Generated Test Cases:\n");
-  console.log(testCases);
+  console.log(`\nGenerated ${testCases.length} test cases\n`);
 
-  // ✅ Save to file
+  // 🔥 Validate
+  const validCases = validateTestCases(testCases);
+
+  // 🔥 Save to file
   fs.writeFileSync(
     "testCases.json",
-    JSON.stringify(testCases, null, 2)
+    JSON.stringify(validCases, null, 2)
   );
 
-  console.log("\n📁 Saved to testCases.json");
+  console.log("✅ Enterprise test cases saved to testCases.json");
 }
 
 run();

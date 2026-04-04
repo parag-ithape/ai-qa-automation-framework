@@ -11,19 +11,26 @@ export async function generateTestCases(url) {
 
   [
     {
-      "testName": "",
-      "steps": ["", "", ""],
-      "expectedResult": ""
-    }
-  ]
+    "testId": "TC_001",
+    "module": "",
+    "priority": "High/Medium/Low",
+    "type": "Positive/Negative/Edge",
+    "tags": ["smoke", "regression"],
+    "preconditions": "",
+    "testData": {
+      "field": "value"
+    },
+    "steps": ["", "", ""],
+    "expectedResult": ""
+  }
+]
 
-  Include:
-  - Positive scenarios
-  - Negative scenarios
-  - Edge cases
-
-  Do not return anything except JSON.
-  `;
+Rules:
+- Include smoke + regression scenarios
+- Include edge cases
+- Keep steps clear and actionable
+- Do not return anything except JSON
+`;
   const response = await client.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [{ role: "user", content: prompt }],
