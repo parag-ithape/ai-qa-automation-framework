@@ -2,10 +2,10 @@
   "authentication": {
     "required": true,
     "steps": [
-      "User navigates to the login page",
       "User enters username and password",
       "User clicks the login button",
-      "User is redirected to the product listing page upon successful login"
+      "System validates credentials",
+      "User is granted access to the application"
     ]
   },
   "modules": [
@@ -15,7 +15,7 @@
         "View all available products",
         "Sort products by name",
         "Sort products by price",
-        "Filter products"
+        "Filter products based on criteria"
       ]
     },
     {

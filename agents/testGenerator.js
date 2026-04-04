@@ -1,54 +1,63 @@
 import client from "../config/openai.js";
 
-export async function generateTestCases(url) {
+export async function generateTestCases(moduleData) {
   const prompt = `
-  Act as a senior QA engineer with overall 10+ years of experience.
+Act as a senior QA engineer.
 
-  Generate UI test cases for the following website:
-  ${url}
+Based on the following application structure:
 
-  Return output ONLY in JSON format like this:
+${moduleData}
 
-  [
+Generate enterprise-level test cases.
+
+Return ONLY JSON in this format:
+
+{
+  "version": "1.0",
+  "generatedAt": "",
+  "testCases": [
     {
-    "testId": "TC_001",
-    "module": "",
-    "priority": "High/Medium/Low",
-    "type": "Positive/Negative/Edge",
-    "tags": ["smoke", "regression"],
-    "preconditions": "",
-    "testData": {
-      "field": "value"
-    },
-    "steps": ["", "", ""],
-    "expectedResult": ""
-  }
-]
+      "testId": "TC_001",
+      "module": "",
+      "submodule": "",
+      "priority": "High/Medium/Low",
+      "severity": "Critical/Major/Minor",
+      "type": "Positive/Negative/Edge",
+      "tags": ["smoke", "regression"],
+      "preconditions": "",
+      "testData": {},
+      "steps": [],
+      "expectedResult": ""
+    }
+  ]
+}
 
 Rules:
-- Include smoke + regression scenarios
-- Include edge cases
-- Keep steps clear and actionable
+- Ensure unique testId
+- Cover all modules
+- Include smoke + regression
+- Avoid duplicates
+- Keep steps actionable
 - Do not return anything except JSON
 `;
+
   const response = await client.chat.completions.create({
     model: "gpt-4o-mini",
     messages: [{ role: "user", content: prompt }],
   });
+
   const content = response.choices[0].message.content;
 
-// 🔥 Clean markdown formatting
-const cleaned = content
-  .replace(/```json/g, "")
-  .replace(/```/g, "")
-  .trim();
+  const cleaned = content
+    .replace(/```json/g, "")
+    .replace(/```/g, "")
+    .trim();
 
-try {
-  const parsed = JSON.parse(cleaned);
-  return parsed;
-} catch (error) {
-  console.error("❌ JSON parsing failed. Raw output:");
-  console.log(content);
-  throw error;
-}
+  try {
+    return JSON.parse(cleaned);
+  } catch (error) {
+    console.error("❌ Generator JSON parse failed:");
+    console.log(content);
+    throw error;
+  }
 }

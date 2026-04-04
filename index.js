@@ -1,22 +1,54 @@
 import fs from "fs";
 import { analyzeModules } from "./agents/moduleAnalyzer.js";
+import { generateTestCases } from "./agents/testGenerator.js";
+import { getInput } from "./utils/inputProcessor.js";
+
+function filterTestCases(testCases, filterType = "all") {
+  if (filterType === "smoke") {
+    return testCases.filter(tc => tc.tags.includes("smoke"));
+  }
+
+  if (filterType === "high") {
+    return testCases.filter(tc => tc.priority === "High");
+  }
+
+  return testCases;
+}
 
 async function run() {
   try {
-    // 🔥 Step 1: Read input
-    const input = fs.readFileSync("input.txt", "utf-8");
+    // 🔥 Choose input type
+    const sourceType = "text"; // text | docx
+
+    const input = await getInput(sourceType);
+
     console.log("📄 Input loaded...");
 
-    // 🔥 Step 2: Analyze modules
+    // 🔥 Analyzer
     const moduleData = await analyzeModules(input);
 
-    // 🔥 Step 3: Save analyzer output
     fs.writeFileSync(
       "moduleData.json",
       JSON.stringify(moduleData, null, 2)
     );
 
-    console.log("✅ Module analysis saved to moduleData.json");
+    console.log(`✅ Modules identified: ${moduleData.modules.length}`);
+
+    // 🔥 Generator
+    const result = await generateTestCases(
+      JSON.stringify(moduleData, null, 2)
+    );
+
+    // 🔥 Filtering (optional)
+    const filterType = "all"; // smoke | high | all
+    result.testCases = filterTestCases(result.testCases, filterType);
+
+    fs.writeFileSync(
+      "testCases.json",
+      JSON.stringify(result, null, 2)
+    );
+
+    console.log(`✅ Test cases generated: ${result.testCases.length}`);
 
   } catch (error) {
     console.error("❌ Error:", error.message);
