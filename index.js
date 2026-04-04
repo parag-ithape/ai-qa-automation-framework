@@ -3,6 +3,7 @@ import { analyzeModules } from "./agents/moduleAnalyzer.js";
 import { generateTestCases } from "./agents/testGenerator.js";
 import { getInput } from "./utils/inputProcessor.js";
 
+// 🔥 Filter function
 function filterTestCases(testCases, filterType = "all") {
   if (filterType === "smoke") {
     return testCases.filter(tc => tc.tags.includes("smoke"));
@@ -17,14 +18,14 @@ function filterTestCases(testCases, filterType = "all") {
 
 async function run() {
   try {
-    // 🔥 Choose input type
-    const sourceType = "text"; // text | docx
+    // 🔥 INPUT TYPE (text | docx)
+    const sourceType = "text";
 
     const input = await getInput(sourceType);
 
     console.log("📄 Input loaded...");
 
-    // 🔥 Analyzer
+    // 🔥 STEP 1: Analyze
     const moduleData = await analyzeModules(input);
 
     fs.writeFileSync(
@@ -34,15 +35,31 @@ async function run() {
 
     console.log(`✅ Modules identified: ${moduleData.modules.length}`);
 
-    // 🔥 Generator
+    // 🔥 STEP 2: Generate test cases
     const result = await generateTestCases(
       JSON.stringify(moduleData, null, 2)
     );
 
-    // 🔥 Filtering (optional)
+    // 🔥 STEP 3: Apply filter (optional)
     const filterType = "all"; // smoke | high | all
     result.testCases = filterTestCases(result.testCases, filterType);
 
+    // 🔥 STEP 4: Update summary
+    result.summary.total = result.testCases.length;
+
+    result.summary.smoke = result.testCases.filter(tc =>
+      tc.tags.includes("smoke")
+    ).length;
+
+    result.summary.regression = result.testCases.filter(tc =>
+      tc.tags.includes("regression")
+    ).length;
+
+    result.summary.highPriority = result.testCases.filter(tc =>
+      tc.priority === "High"
+    ).length;
+
+    // 🔥 STEP 5: Save final output
     fs.writeFileSync(
       "testCases.json",
       JSON.stringify(result, null, 2)

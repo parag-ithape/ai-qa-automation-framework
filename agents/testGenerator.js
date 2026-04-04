@@ -8,36 +8,47 @@ Based on the following application structure:
 
 ${moduleData}
 
-Generate enterprise-level test cases.
+Generate test cases in STRICT enterprise JSON format.
 
-Return ONLY JSON in this format:
+Return ONLY JSON in this EXACT structure:
 
 {
   "version": "1.0",
   "generatedAt": "",
+  "application": "SauceDemo",
+  "environment": "QA",
+  "summary": {
+    "total": 0,
+    "smoke": 0,
+    "regression": 0,
+    "highPriority": 0
+  },
   "testCases": [
     {
       "testId": "TC_001",
+      "title": "",
       "module": "",
       "submodule": "",
       "priority": "High/Medium/Low",
       "severity": "Critical/Major/Minor",
       "type": "Positive/Negative/Edge",
       "tags": ["smoke", "regression"],
-      "preconditions": "",
+      "preconditions": [],
       "testData": {},
       "steps": [],
-      "expectedResult": ""
+      "expectedResult": "",
+      "postconditions": [],
+      "status": "Not Executed"
     }
   ]
 }
 
 Rules:
+- Do NOT change structure
 - Ensure unique testId
+- Fill all fields properly
 - Cover all modules
-- Include smoke + regression
-- Avoid duplicates
-- Keep steps actionable
+- Include positive, negative, edge cases
 - Do not return anything except JSON
 `;
 

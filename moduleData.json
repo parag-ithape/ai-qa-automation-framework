@@ -1,38 +1,74 @@
 {
   "authentication": {
     "required": true,
+    "type": "UI",
     "steps": [
       "User enters username and password",
-      "User clicks the login button",
-      "System validates credentials",
-      "User is granted access to the application"
+      "User submits login form",
+      "System validates credentials"
     ]
   },
   "modules": [
     {
       "name": "Product Listing",
+      "type": "Functional",
       "submodules": [
-        "View all available products",
-        "Sort products by name",
-        "Sort products by price",
-        "Filter products based on criteria"
+        {
+          "name": "View all available products",
+          "category": "Positive"
+        },
+        {
+          "name": "Sort products by name",
+          "category": "Positive"
+        },
+        {
+          "name": "Sort products by price",
+          "category": "Positive"
+        },
+        {
+          "name": "Filter products",
+          "category": "Positive"
+        }
       ]
     },
     {
       "name": "Cart",
+      "type": "Functional",
       "submodules": [
-        "Add item to cart",
-        "Remove item from cart",
-        "View cart details"
+        {
+          "name": "Add item to cart",
+          "category": "Positive"
+        },
+        {
+          "name": "Remove item from cart",
+          "category": "Positive"
+        },
+        {
+          "name": "View cart details",
+          "category": "Positive"
+        }
       ]
     },
     {
       "name": "Checkout",
+      "type": "Functional",
       "submodules": [
-        "Enter shipping information",
-        "Review order summary",
-        "Place order",
-        "View order confirmation"
+        {
+          "name": "Enter shipping information",
+          "category": "Positive"
+        },
+        {
+          "name": "Review order summary",
+          "category": "Positive"
+        },
+        {
+          "name": "Place order",
+          "category": "Positive"
+        },
+        {
+          "name": "View order confirmation",
+          "category": "Positive"
+        }
       ]
     }
   ]

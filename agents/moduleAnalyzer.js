@@ -9,27 +9,40 @@ Analyze the following application requirement:
 ${input}
 
 Tasks:
-1. Identify all modules
-2. Identify submodules / flows under each module
+1. Identify authentication (if present)
+2. Identify all modules
+3. Identify submodules (flows)
+4. Classify each submodule:
+   - Positive
+   - Negative
+   - Edge
 
 Return ONLY JSON in this format:
 
 {
   "authentication": {
-    "required": true,
+    "required": true/false,
+    "type": "UI/API",
     "steps": []
   },
   "modules": [
     {
       "name": "",
-      "submodules": []
+      "type": "Functional",
+      "submodules": [
+        {
+          "name": "",
+          "category": "Positive/Negative/Edge"
+        }
+      ]
     }
   ]
 }
 
 Rules:
-- Extract authentication separately if present
-- Submodules should be meaningful flows
+- Authentication must be separate
+- Submodules should be meaningful user flows
+- Classification must be accurate
 - Do not return anything except JSON
 `;
 
@@ -40,7 +53,6 @@ Rules:
 
   const content = response.choices[0].message.content;
 
-  // 🔥 Clean markdown (important)
   const cleaned = content
     .replace(/```json/g, "")
     .replace(/```/g, "")
