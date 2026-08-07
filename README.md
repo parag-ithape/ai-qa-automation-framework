@@ -24,6 +24,12 @@ input → analyzer → moduleData.json
 
 ---
 
+## 📋 Project Plan
+
+See **[docs/AI_QA_AGENT_PLAN.md](docs/AI_QA_AGENT_PLAN.md)** for the full roadmap, phase status, review checkpoints, and Phase 1 (Requirement Analysis) design.
+
+---
+
 ## 📦 Installation
 
 ```bash
