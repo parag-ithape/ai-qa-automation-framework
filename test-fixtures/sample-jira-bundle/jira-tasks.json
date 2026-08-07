@@ -1,0 +1,26 @@
+{
+  "epicKey": "STUDY-100",
+  "epicTitle": "SauceDemo MVP — Study epic",
+  "tasks": [
+    {
+      "key": "STUDY-102",
+      "title": "Implement login page",
+      "description": "Username/password fields, login button, error message on invalid credentials."
+    },
+    {
+      "key": "STUDY-103",
+      "title": "Product listing with sort",
+      "description": "Display products grid; sort dropdown for name (A-Z, Z-A) and price (low-high, high-low)."
+    },
+    {
+      "key": "STUDY-104",
+      "title": "Shopping cart",
+      "description": "Add to cart, remove from cart, cart badge count, cart page with line items."
+    },
+    {
+      "key": "STUDY-105",
+      "title": "Checkout flow",
+      "description": "Shipping form (first name, last name, postal code), order summary, finish checkout."
+    }
+  ]
+}

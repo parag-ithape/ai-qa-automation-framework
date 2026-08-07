@@ -30,6 +30,49 @@ See **[docs/AI_QA_AGENT_PLAN.md](docs/AI_QA_AGENT_PLAN.md)** for the full roadma
 
 ---
 
+## 🚀 Quick Start (Study / Local Mode)
+
+No real JIRA or org access required. Uses a local mock bundle in `test-fixtures/`.
+
+```bash
+npm install
+
+# Phase 1 only — multi-source requirement analysis (default)
+npm start
+
+# Same as above
+npm run phase1
+
+# Phase 1 with legacy single text file (input.txt)
+npm run phase1:text
+
+# Phase 1 + test case generation
+npm run all
+```
+
+### CLI options
+
+```bash
+node index.js --phase=1 --source=bundle --path=./test-fixtures/sample-jira-bundle
+node index.js --phase=1 --source=text --file=input.txt
+node index.js --phase=all --source=bundle --filter=smoke
+```
+
+### Phase 1 outputs
+
+Each run creates a folder under `runs/<run-id>/phase1-requirement-analysis/`:
+
+| File | Purpose |
+|------|---------|
+| `moduleData.json` | Structured analysis result |
+| `analysis-summary.md` | Human-readable summary for Review #1 |
+| `review.json` | Review checkpoint (status: pending) |
+| `unifiedRequirements.json` | Merged input from all sources |
+
+A copy of `moduleData.json` is also written to the project root for backward compatibility.
+
+---
+
 ## 📦 Installation
 
 ```bash

@@ -1,0 +1,17 @@
+[
+  {
+    "author": "Client",
+    "created": "2026-08-01T10:00:00Z",
+    "body": "Checkout must validate postal code format (5 digits for US)."
+  },
+  {
+    "author": "Client",
+    "created": "2026-08-02T14:30:00Z",
+    "body": "Cart badge should update immediately when item is added or removed."
+  },
+  {
+    "author": "QA Lead",
+    "created": "2026-08-03T09:15:00Z",
+    "body": "Scope for this sprint: Login, Product Listing, Cart, Checkout. Order history is out of scope."
+  }
+]
