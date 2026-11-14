@@ -1,0 +1,51 @@
+name: Run AI QA Pipeline
+
+# Manual trigger only — this calls the OpenAI API and costs money.
+on:
+  workflow_dispatch:
+    inputs:
+      phase:
+        description: "Phase to run"
+        type: choice
+        options: ["1", "all"]
+        default: "1"
+      filter:
+        description: "Test case filter (only used when phase = all)"
+        type: choice
+        options: [all, smoke, high]
+        default: all
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run pipeline
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          if [ -z "$OPENAI_API_KEY" ]; then
+            echo "::error::OPENAI_API_KEY secret is not set (Settings → Secrets and variables → Actions)"
+            exit 1
+          fi
+          node index.js --phase=${{ inputs.phase }} --source=bundle --filter=${{ inputs.filter }}
+
+      - name: Upload results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-run-${{ github.run_number }}
+          path: |
+            runs/
+            moduleData.json
+            testCases.json
+          if-no-files-found: ignore

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-     "start": "node index.js",
+    "start": "node index.js",
+    "phase1": "node index.js --phase=1 --source=bundle",
+    "phase1:text": "node index.js --phase=1 --source=text --file=input.txt",
+    "all": "node index.js --phase=all --source=bundle",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
