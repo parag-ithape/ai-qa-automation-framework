@@ -7,13 +7,20 @@ on:
       phase:
         description: "Phase to run"
         type: choice
-        options: ["1", "all"]
-        default: "1"
+        options: ["all", "1"]
+        default: "all"
       filter:
         description: "Test case filter (only used when phase = all)"
         type: choice
         options: [all, smoke, high]
         default: all
+      publish:
+        description: "Commit the report to reports/latest so it shows in the repo"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write # needed to commit the report back to the repo
 
 jobs:
   run:
@@ -39,35 +46,11 @@ jobs:
           fi
           node index.js --phase=${{ inputs.phase }} --source=bundle --filter=${{ inputs.filter }}
 
-      - name: Publish results to run summary
+      - name: Build report
         if: always()
         run: |
-          {
-            echo "# AI QA Pipeline Results"
-            echo ""
-            summary=$(ls -t runs/*/phase1-requirement-analysis/analysis-summary.md 2>/dev/null | head -1)
-            if [ -n "$summary" ]; then
-              echo "## Phase 1 — Requirement Analysis"
-              cat "$summary"
-              echo ""
-            else
-              echo "_No Phase 1 summary was produced — check the 'Run pipeline' step logs._"
-            fi
-            if [ -f testCases.json ]; then
-              echo "## Generated Test Cases"
-              node -e '
-                const r = JSON.parse(require("fs").readFileSync("testCases.json","utf8"));
-                const s = r.summary || {};
-                console.log(`**Total:** ${s.total ?? r.testCases.length} | **Smoke:** ${s.smoke ?? "-"} | **Regression:** ${s.regression ?? "-"} | **High priority:** ${s.highPriority ?? "-"}\n`);
-                console.log("| ID | Module | Title | Priority | Tags |");
-                console.log("|----|--------|-------|----------|------|");
-                for (const tc of r.testCases || []) {
-                  const esc = (v) => String(v ?? "").replace(/\|/g, "\\|").replace(/\n/g, " ");
-                  console.log(`| ${esc(tc.testId)} | ${esc(tc.module)} | ${esc(tc.title)} | ${esc(tc.priority)} | ${esc((tc.tags || []).join(", "))} |`);
-                }
-              '
-            fi
-          } >> "$GITHUB_STEP_SUMMARY"
+          node scripts/buildReport.js reports/latest
+          cat reports/latest/REPORT.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Upload results
         if: always()
@@ -76,6 +59,18 @@ jobs:
           name: qa-run-${{ github.run_number }}
           path: |
             runs/
-            moduleData.json
-            testCases.json
+            reports/latest/
           if-no-files-found: ignore
+
+      - name: Commit report to repo
+        if: success() && inputs.publish
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports/latest
+          if git diff --cached --quiet; then
+            echo "No report changes to commit."
+          else
+            git commit -m "chore(report): update AI QA results (run #${{ github.run_number }})"
+            git push
+          fi

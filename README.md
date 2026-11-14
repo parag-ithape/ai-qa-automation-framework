@@ -1,6 +1,19 @@
 # 🤖 AI QA Automation Framework
 
+[![CI](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/ci.yml)
+[![AI QA Pipeline](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/run-pipeline.yml/badge.svg)](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/run-pipeline.yml)
+
 An AI-driven test automation framework that generates enterprise-level test cases from requirements using LLMs.
+
+## 📈 Latest Results
+
+👉 **[View the latest AI-generated QA report](reports/latest/REPORT.md)**: requirement analysis, test case summary and the full test case list, regenerated automatically by GitHub Actions.
+
+| Artifact | Description |
+|----------|-------------|
+| [REPORT.md](reports/latest/REPORT.md) | Human-readable report |
+| [testCases.json](reports/latest/testCases.json) | Generated test cases (raw) |
+| [moduleData.json](reports/latest/moduleData.json) | Phase 1 module analysis (raw) |
 
 ---
 

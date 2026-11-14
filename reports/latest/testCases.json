@@ -1,0 +1,327 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-11-14T14:13:04.110Z",
+  "application": "SauceDemo",
+  "environment": "QA",
+  "summary": {
+    "total": 12,
+    "smoke": 5,
+    "regression": 12,
+    "highPriority": 6
+  },
+  "testCases": [
+    {
+      "testId": "TC_001",
+      "title": "User login with valid credentials",
+      "module": "Authentication",
+      "submodule": "Login",
+      "priority": "High",
+      "severity": "Critical",
+      "type": "Positive",
+      "tags": [
+        "smoke",
+        "regression"
+      ],
+      "preconditions": [],
+      "testData": {
+        "username": "standard_user",
+        "password": "secret_sauce"
+      },
+      "steps": [
+        "Navigate to login page",
+        "Enter username and password",
+        "Click on login button"
+      ],
+      "expectedResult": "User is successfully logged in and redirected to the homepage.",
+      "postconditions": [
+        "User is on the homepage."
+      ],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_002",
+      "title": "View all available products",
+      "module": "Product Listing",
+      "submodule": "View Products",
+      "priority": "Medium",
+      "severity": "Major",
+      "type": "Positive",
+      "tags": [
+        "smoke",
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in"
+      ],
+      "testData": {},
+      "steps": [
+        "Access the product listing page"
+      ],
+      "expectedResult": "All available products are displayed.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_003",
+      "title": "Sort products by price",
+      "module": "Product Listing",
+      "submodule": "Sort Products",
+      "priority": "Medium",
+      "severity": "Major",
+      "type": "Positive",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in"
+      ],
+      "testData": {
+        "sortOption": "Price (low to high)"
+      },
+      "steps": [
+        "Access the product listing page",
+        "Select sort option for price low to high"
+      ],
+      "expectedResult": "Products are sorted by price in ascending order.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_004",
+      "title": "Filter products by category",
+      "module": "Product Listing",
+      "submodule": "Filter Products",
+      "priority": "Medium",
+      "severity": "Major",
+      "type": "Positive",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in"
+      ],
+      "testData": {
+        "filterOption": "Category"
+      },
+      "steps": [
+        "Access the product listing page",
+        "Select a filter option for a specific category"
+      ],
+      "expectedResult": "Products are filtered according to the selected category.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_005",
+      "title": "Add item to cart",
+      "module": "Cart",
+      "submodule": "Add Item to Cart",
+      "priority": "High",
+      "severity": "Critical",
+      "type": "Positive",
+      "tags": [
+        "smoke",
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "At least one product is available"
+      ],
+      "testData": {
+        "product": "Sauce Labs Backpack"
+      },
+      "steps": [
+        "Access the product listing page",
+        "Click on 'Add to Cart' for the product"
+      ],
+      "expectedResult": "Item is added to the cart successfully.",
+      "postconditions": [
+        "Cart badge updates to reflect one item."
+      ],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_006",
+      "title": "Remove item from cart",
+      "module": "Cart",
+      "submodule": "Remove Item from Cart",
+      "priority": "High",
+      "severity": "Critical",
+      "type": "Positive",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "At least one item in the cart"
+      ],
+      "testData": {
+        "product": "Sauce Labs Backpack"
+      },
+      "steps": [
+        "Access the cart page",
+        "Click on 'Remove' for the item"
+      ],
+      "expectedResult": "Item is removed from the cart successfully.",
+      "postconditions": [
+        "Cart badge updates to reflect no items."
+      ],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_007",
+      "title": "View cart details",
+      "module": "Cart",
+      "submodule": "View Cart Details",
+      "priority": "Medium",
+      "severity": "Major",
+      "type": "Positive",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "At least one item in the cart"
+      ],
+      "testData": {},
+      "steps": [
+        "Access the cart page"
+      ],
+      "expectedResult": "Details of items in the cart are displayed.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_008",
+      "title": "Check cart badge update on addition",
+      "module": "Cart",
+      "submodule": "Cart Badge Update",
+      "priority": "Medium",
+      "severity": "Major",
+      "type": "Positive",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "No items in the cart"
+      ],
+      "testData": {
+        "product": "Sauce Labs Backpack"
+      },
+      "steps": [
+        "Add item to cart",
+        "Check cart badge"
+      ],
+      "expectedResult": "Cart badge updates immediately to reflect one item.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_009",
+      "title": "Enter shipping information with valid data",
+      "module": "Checkout",
+      "submodule": "Enter Shipping Information",
+      "priority": "High",
+      "severity": "Critical",
+      "type": "Positive",
+      "tags": [
+        "smoke",
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "Item is in cart"
+      ],
+      "testData": {
+        "postalCode": "12345"
+      },
+      "steps": [
+        "Access checkout page",
+        "Enter shipping information including postal code",
+        "Click on continue"
+      ],
+      "expectedResult": "Shipping information is accepted and user can proceed.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_010",
+      "title": "Validate postal code format on checkout",
+      "module": "Checkout",
+      "submodule": "Postal Code Validation",
+      "priority": "High",
+      "severity": "Critical",
+      "type": "Negative",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "Item is in cart"
+      ],
+      "testData": {
+        "postalCode": "1234"
+      },
+      "steps": [
+        "Access checkout page",
+        "Enter invalid postal code",
+        "Click on continue"
+      ],
+      "expectedResult": "Error message is shown for invalid postal code.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_011",
+      "title": "Review order summary",
+      "module": "Checkout",
+      "submodule": "Review Order Summary",
+      "priority": "Medium",
+      "severity": "Major",
+      "type": "Positive",
+      "tags": [
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "Item is added to the cart",
+        "Shipping information is entered"
+      ],
+      "testData": {},
+      "steps": [
+        "Access checkout page",
+        "Review the order summary before placing the order"
+      ],
+      "expectedResult": "Order summary displays correct items and totals.",
+      "postconditions": [],
+      "status": "Not Executed"
+    },
+    {
+      "testId": "TC_012",
+      "title": "Place order after review",
+      "module": "Checkout",
+      "submodule": "Place Order",
+      "priority": "High",
+      "severity": "Critical",
+      "type": "Positive",
+      "tags": [
+        "smoke",
+        "regression"
+      ],
+      "preconditions": [
+        "User is logged in",
+        "Item is in cart",
+        "Shipping information entered",
+        "Order summary reviewed"
+      ],
+      "testData": {},
+      "steps": [
+        "Click on place order button"
+      ],
+      "expectedResult": "Order is placed successfully and user sees order confirmation.",
+      "postconditions": [],
+      "status": "Not Executed"
+    }
+  ]
+}
