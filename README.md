@@ -1,8 +1,7 @@
 # 🤖 AI QA Automation Framework
 
 [![CI](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/ci.yml)
-[![AI QA Pipeline](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/run-pipeline.yml/badge.svg)](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/run-pipeline.yml)
-
+[![AI QA Pipeline](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/run-pipeline.yml/badge.svg?event=workflow_dispatch)](https://github.com/parag-ithape/ai-qa-automation-framework/actions/workflows/run-pipeline.yml)
 An AI-driven test automation framework that generates enterprise-level test cases from requirements using LLMs.
 
 ## 📈 Latest Results
