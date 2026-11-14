@@ -1,7 +1,7 @@
 # Requirement Analysis Summary
 
-**Run ID:** 20261114_194236_9avmbm
-**Analyzed at:** 2026-11-14T14:13:04.110Z
+**Run ID:** 20261114_141824_7qbatg
+**Analyzed at:** 2026-11-14T14:18:46.075Z
 **Application:** SauceDemo
 **URL:** https://www.saucedemo.com
 **JIRA ticket:** STUDY-101
@@ -14,43 +14,42 @@
 
 ## Modules
 ### Product Listing
-View and manage product listings including sorting and filtering.
+View all available products, Sort products by name and price, Filter products
 
 | Submodule | Category | Source |
 |-----------|----------|--------|
-| View Products | Positive | Requirements text |
-| Sort Products | Positive | Requirements text |
-| Filter Products | Positive | Requirements text |
+| View all products | Positive | Requirements text |
+| Sort products | Positive | Requirements text |
+| Filter products | Positive | Requirements text |
 
 ### Cart
-Manage the shopping cart including adding and removing items.
+Manage products in the cart.
 
 | Submodule | Category | Source |
 |-----------|----------|--------|
-| Add Item to Cart | Positive | Requirements text |
-| Remove Item from Cart | Positive | Requirements text |
-| View Cart Details | Positive | Requirements text |
-| Cart Badge Update | Positive | JIRA comments |
+| Add item to cart | Positive | Requirements text |
+| Remove item from cart | Positive | Requirements text |
+| View cart details | Positive | Requirements text |
 
 ### Checkout
-Process for checking out and placing orders.
+Handle the checkout process.
 
 | Submodule | Category | Source |
 |-----------|----------|--------|
-| Enter Shipping Information | Positive | Requirements text |
-| Review Order Summary | Positive | Requirements text |
-| Place Order | Positive | Requirements text |
-| Order Confirmation | Positive | Requirements text |
-| Postal Code Validation | Negative | JIRA comments |
+| Enter shipping information | Positive | Requirements text |
+| Review order summary | Positive | Requirements text |
+| Place order | Positive | Requirements text |
+| View order confirmation | Positive | Requirements text |
+| Validate postal code format | Negative | JIRA comments |
 
 ## JIRA Comments Summary
-Checkout must validate postal code format. Cart badge should update immediately when items are added or removed.
+Checkout must validate postal code format; Cart badge should update immediately when item is added or removed; Scope for this sprint: Login, Product Listing, Cart, Checkout. Order history is out of scope.
 
 ## Epic Summary
-Scope for this sprint: Login, Product Listing, Cart, Checkout. Order history is out of scope.
+Epics include development of Login, Product Listing, Cart, and Checkout functionalities.
 
 ## Out of Scope
-- Order history
+- Order history is out of scope.
 
 ## Review Checkpoint #1
 - [ ] All sources reflected correctly

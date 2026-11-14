@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "runId": "20261114_194236_9avmbm",
-    "analyzedAt": "2026-11-14T14:13:04.110Z",
+    "runId": "20261114_141824_7qbatg",
+    "analyzedAt": "2026-11-14T14:18:46.075Z",
     "jiraTicket": "STUDY-101",
     "jiraEpic": "STUDY-100",
     "applicationName": "SauceDemo",
@@ -18,8 +18,8 @@
     "type": "UI",
     "steps": [
       "User logs in using valid credentials",
-      "Enter username: standard_user",
-      "Enter password: secret_sauce"
+      "Username: standard_user",
+      "Password: secret_sauce"
     ],
     "sourceRef": "Requirements text"
   },
@@ -27,30 +27,30 @@
     {
       "name": "Product Listing",
       "type": "Functional",
-      "description": "View and manage product listings including sorting and filtering.",
+      "description": "View all available products, Sort products by name and price, Filter products",
       "sourceRefs": [
         "Requirements text",
         "Wireframe codebase"
       ],
       "submodules": [
         {
-          "name": "View Products",
+          "name": "View all products",
           "category": "Positive",
-          "description": "User can view all available products.",
+          "description": "User views the complete list of products.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Sort Products",
+          "name": "Sort products",
           "category": "Positive",
-          "description": "User can sort products by name and price.",
+          "description": "User can sort the products by name and price.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Filter Products",
+          "name": "Filter products",
           "category": "Positive",
-          "description": "User can filter products.",
+          "description": "User can filter the products.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         }
@@ -59,47 +59,39 @@
     {
       "name": "Cart",
       "type": "Functional",
-      "description": "Manage the shopping cart including adding and removing items.",
+      "description": "Manage products in the cart.",
       "sourceRefs": [
         "Requirements text",
-        "Wireframe codebase",
-        "JIRA comments"
+        "Wireframe codebase"
       ],
       "submodules": [
         {
-          "name": "Add Item to Cart",
+          "name": "Add item to cart",
           "category": "Positive",
-          "description": "User can add items to the cart.",
+          "description": "User adds an item to the cart.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Remove Item from Cart",
+          "name": "Remove item from cart",
           "category": "Positive",
-          "description": "User can remove items from the cart.",
+          "description": "User removes an item from the cart.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "View Cart Details",
+          "name": "View cart details",
           "category": "Positive",
-          "description": "User can view details of items in the cart.",
+          "description": "User views the details of items in the cart.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
-        },
-        {
-          "name": "Cart Badge Update",
-          "category": "Positive",
-          "description": "Cart badge should update immediately upon adding/removing items.",
-          "requirementRef": "",
-          "sourceRef": "JIRA comments"
         }
       ]
     },
     {
       "name": "Checkout",
       "type": "Functional",
-      "description": "Process for checking out and placing orders.",
+      "description": "Handle the checkout process.",
       "sourceRefs": [
         "Requirements text",
         "Wireframe codebase",
@@ -107,37 +99,37 @@
       ],
       "submodules": [
         {
-          "name": "Enter Shipping Information",
+          "name": "Enter shipping information",
           "category": "Positive",
-          "description": "User can enter shipping information including postal code.",
+          "description": "User enters shipping information during checkout.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Review Order Summary",
+          "name": "Review order summary",
           "category": "Positive",
-          "description": "User can review the order summary before placing the order.",
+          "description": "User reviews the order summary before placing the order.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Place Order",
+          "name": "Place order",
           "category": "Positive",
-          "description": "User can place the order after review.",
+          "description": "User places the order.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Order Confirmation",
+          "name": "View order confirmation",
           "category": "Positive",
-          "description": "User views order confirmation upon successful checkout.",
+          "description": "User views the order confirmation.",
           "requirementRef": "",
           "sourceRef": "Requirements text"
         },
         {
-          "name": "Postal Code Validation",
+          "name": "Validate postal code format",
           "category": "Negative",
-          "description": "Ensure postal code format is validated (5 digits for US).",
+          "description": "Postal code must follow the format of 5 digits (for US).",
           "requirementRef": "",
           "sourceRef": "JIRA comments"
         }
@@ -145,19 +137,19 @@
     }
   ],
   "jiraContext": {
-    "commentsSummary": "Checkout must validate postal code format. Cart badge should update immediately when items are added or removed.",
-    "epicSummary": "Scope for this sprint: Login, Product Listing, Cart, Checkout. Order history is out of scope.",
+    "commentsSummary": "Checkout must validate postal code format; Cart badge should update immediately when item is added or removed; Scope for this sprint: Login, Product Listing, Cart, Checkout. Order history is out of scope.",
+    "epicSummary": "Epics include development of Login, Product Listing, Cart, and Checkout functionalities.",
     "developerTasks": [
-      "Implement login page with fields, button, and error message.",
-      "Product listing with sort dropdown for name and price.",
-      "Implement shopping cart with add/remove functionality and display.",
-      "Checkout flow with shipping form and order summary."
+      "STUDY-102: Implement login page with username/password fields, login button, and error message.",
+      "STUDY-103: Implement product listing with sort functionality.",
+      "STUDY-104: Implement shopping cart functionalities.",
+      "STUDY-105: Implement checkout flow."
     ]
   },
   "conflicts": [],
   "gaps": [],
   "assumptions": [],
   "outOfScope": [
-    "Order history"
+    "Order history is out of scope."
   ]
 }
